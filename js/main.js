@@ -1,13 +1,35 @@
 // Run App
-$(document).ready(start);
+$(start);
 
 let draw;
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
+let radius = 10;
+let minRadius = 2;
+let maxRadius = 30;
+
+function pincelSize() {
+  $('#increase').click(() => {
+    radius += 2;
+    if (radius >= maxRadius) {
+      radius = maxRadius;
+    }
+    $('#pincelval').text(radius);
+  });
+
+  $('#decrease').click(() => {
+    radius -= 2;
+    if (radius <= minRadius) {
+      radius = minRadius;
+    }
+    $('#pincelval').text(radius);
+  });
+}
 
 function start() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  pincelSize();
 
   // Events
   $('#canvas').mousedown(press);
@@ -21,13 +43,20 @@ function start() {
 
   function paint(event) {
     if (draw) {
+      context.lineWidth = radius * 2;
+      context.lineTo(event.pageX, event.pageY);
+      context.stroke();
+
       context.beginPath();
-      context.arc(event.pageX, event.pageY, 10, 0, 2 * Math.PI);
+      context.arc(event.pageX, event.pageY, radius, 0, 2 * Math.PI);
       context.fill();
+
+      context.beginPath();
+      context.moveTo(event.pageX, event.pageY);
     }
   }
 
-  function leave(event) {
+  function leave() {
     draw = false;
   }
 }
