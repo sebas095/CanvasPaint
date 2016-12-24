@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>Paint con Canvas</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container bar">
       <div class="row">
         <div class="col-md-12">
-          <div class="radius">
+          <div class="radius" style="display: inline">
             Pincel <label id="pincelval">10</label>
             <button class="btn btn-primary" id="decrease">-</button>
             <button class="btn btn-primary" id="increase">+</button>
@@ -18,10 +19,11 @@
         </div>
       </div>
     </div>
-    <div id="changeColor"></div>
+    <div class="colors" id="changeColor"></div>
     <canvas id="canvas"></canvas>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/setColors.js"></script>
   </body>
 </html>
