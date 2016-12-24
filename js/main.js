@@ -27,9 +27,10 @@ function pincelSize() {
 }
 
 function start() {
-  canvas.width = window.innerWidth;
+  canvas.width = window.innerWidth - 15;
   canvas.height = window.innerHeight;
   pincelSize();
+  save();
 
   // Events
   $('#canvas').mousedown(press);
@@ -58,5 +59,12 @@ function start() {
 
   function leave() {
     draw = false;
+  }
+
+  function save() {
+    $('#save').click(() => {
+        const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        window.location.href = image;
+    });
   }
 }
